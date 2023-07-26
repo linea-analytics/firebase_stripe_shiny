@@ -14,7 +14,7 @@ If you have an R Shiny app that you would like to sell as a service to customers
     - Luckily, there is an existing R package that simplifies using Firebase in shiny. The package can be found [here](https://firebase.john-coene.com/).
 - [Stripe](https://stripe.com/gb) is a payment process platform that can help manage **subscriptions**.
     - Stripe provides pre-built interfaces for managing payments as well as an API which is relatively easy to use.
-- The `stripe_functions.R` file contains simple functions that leverage the Stripe API to compare your Firebase users to the list of those who paid for a subscription.
+- The `stripe_functions.R` file contains simple functions that leverage the Stripe API to compare your Firebase users to the list of those who paid for a subscription (your Stripe customers).
 
 
 ### What does app.R contain?
