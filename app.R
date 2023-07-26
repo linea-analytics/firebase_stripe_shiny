@@ -26,14 +26,14 @@ privacy_url = 'www.your_privacy_policy_page.com'
 Sys.setenv(STRIPE_SECRET_KEY = "xxx")
 
 # for help on this: https://stripe.com/docs/payments/checkout
-purchase_plan_1_url = 'https://buy.stripe.com/xxx'
-purchase_plan_2_url = 'https://buy.stripe.com/xxx' # (optional)
+purchase_plan_1_url = 'xxx'
+purchase_plan_2_url = 'xxx'
 
 # for help on this: https://stripe.com/docs/no-code/customer-portal
-manage_plan_url = 'https://billing.stripe.com/p/login/xxx'
+manage_plan_url = 'xxx'
 
 # other options (optional)
-info_email = 'your_info@email.com'
+info_email = 'xxx@xxx.com'
 
 # ui                ####
 ui =fluidPage(
