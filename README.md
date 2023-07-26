@@ -26,6 +26,8 @@ If you have an R Shiny app that you would like to sell as a service to customers
 
 The `stripe_functions.R` file contains simple functions that leverage the Stripe API to compare your Firebase users to the list of those who paid for a subscription (your Stripe customers).
 
+For this implementation, some functions assumes there are two subscriptions (e.g. monthly, yearly) but the same approach should work for any number of products.
+
 ---
 
 ### What do I use this?
