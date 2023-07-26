@@ -13,6 +13,8 @@ This repo shows how to implement a subscription service (SaaS) with R **Shiny**,
 
 - The same goes for APIs and the `httr` package, which allows R to handle HTTP requests. You can learn about `httr` [here](https://cran.r-project.org/web/packages/httr/vignettes/quickstart.html). 
 
+---
+
 ### How does this work?
 If you have an R Shiny app that you would like to sell as a service to customers, you can do so using Firebase and Stripe.
 - [Firebase](https://firebase.google.com/) is a service (owned by Google) that helps manage **user authentication**.
@@ -22,6 +24,7 @@ If you have an R Shiny app that you would like to sell as a service to customers
 
 The `stripe_functions.R` file contains simple functions that leverage the Stripe API to compare your Firebase users to the list of those who paid for a subscription (your Stripe customers).
 
+---
 
 ### What do I use this?
 The `app.R` file contains a basic Shiny app with:
