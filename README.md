@@ -2,6 +2,8 @@
  
 ![thumbnail](./img/thumbnail.png)
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 This repo shows how to implement a subscription service (SaaS) with R **Shiny**, **Firebase**, and **Stripe**.
 
 ### Pre-requisites:
