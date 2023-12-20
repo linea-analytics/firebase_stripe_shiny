@@ -29,6 +29,9 @@ Sys.setenv(STRIPE_SECRET_KEY = "xxx")
 purchase_plan_1_url = 'xxx'
 purchase_plan_2_url = 'xxx'
 
+plan_1_product <- "xxx"
+plan_2_product <- "xxx"
+
 # for help on this: https://stripe.com/docs/no-code/customer-portal
 manage_plan_url = 'xxx'
 
@@ -51,12 +54,12 @@ ui =fluidPage(
                          firebaseUIContainer(),
                          uiOutput('tab_0_ui')
                        )
-                       ),
+              ),
               # tab_1          --------------------------------------------------------------------
               tabPanel(title = 'tab 1', uiOutput("tab_1_ui")),
               # tab_2          --------------------------------------------------------------------
               tabPanel(title = 'tab 2', uiOutput("tab_2_ui"))
-              )
+  )
 )
 
 
@@ -92,11 +95,33 @@ server = function(input, output, session) {
   })
   
   # stripe
+  
+  #reactive value subscription status
+  reactiveData_has_plan <- reactiveVal(NULL)
+  
+  #reactive subscription subscription product 
+  reactiveData_sub_prod <- reactiveVal(NULL)
+  
+  # check if user has a plan plus product
+  observeEvent(f$get_signed_in(), {
+    
+    user = f$get_signed_in() # get logged in user info
+    has_plan_prod = user_has_plan_prod(email = user$response$email, secret_key = secret_key)
+    
+    if (has_plan_prod$has_plan) {
+      
+      reactiveData_has_plan(has_plan_prod$has_plan)
+      
+      reactiveData_sub_prod(has_plan_prod$content_sub_prod)
+      
+    }
+    
+  })
+  
   output$manage_plan_ui = renderUI({
     f$req_sign_in()
     
-    user = f$get_signed_in() # get logged in user info
-    has_plan = user_has_plan(email = user$response$email, secret_key = secret_key)
+    has_plan = has_plan()
     
     if (has_plan) {
       a(
@@ -118,8 +143,7 @@ server = function(input, output, session) {
   output$tab_0_ui = renderUI({
     f$req_sign_in()
     
-    user = f$get_signed_in() # get logged in user info
-    has_plan = user_has_plan(email = user$response$email, secret_key = secret_key)
+    has_plan = has_plan() 
     
     if (has_plan) {
       tagList(
@@ -148,9 +172,9 @@ server = function(input, output, session) {
           'purchase'
         ),
         p('For any query please reach out via ',
-            a(href = paste0(
-              'mailto:', info_email
-            ), 'email.'))
+          a(href = paste0(
+            'mailto:', info_email
+          ), 'email.'))
       )
     }
     
@@ -164,14 +188,13 @@ server = function(input, output, session) {
   output$tab_2_ui = renderUI({
     f$req_sign_in()
     
-    user = f$get_signed_in() # get logged in user info
-    has_plan = user_has_plan(email = user$response$email, secret_key = secret_key)
+    has_plan = user_has_plan() && plan_2_product == sub_prod() 
     
     if (has_plan) {
-      h1('Secret tab 2 content.')
+      h1('Secret tab 2 content of product 2.')
       # PAID CONTENT HERE
     }else{
-      h1('You need to purchase a plan to see this content.')
+      h1('You need to purchase a plan and product 2 to see this content.')
       # FREE CONTENT HERE
     }
   })
